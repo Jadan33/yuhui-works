@@ -1328,7 +1328,7 @@
             <div class="about-highlights">
                 <div class="highlight-card">
                     <h4>🎙️ 浙江广电集团 · 1818黄金眼</h4>
-                    <p>融媒体记者（2024.7 - 至今）<br>负责新闻采访、出镜报道、短视频制作、直播连线等全流程工作，累计产出视频 400+ 条，全网总播放量超2000 万</p>
+                    <p>融媒体记者（2024.7 - 至今）<br>负责新闻采访、出镜报道、短视频制作、直播连线等全流程工作，累计产出视频 400+ 条，全网累计总播放量超 1 亿</p>
                 </div>
                 <div class="highlight-card">
                     <h4>📺 广西广播电视台 · 法治最前线</h4>
@@ -1712,10 +1712,10 @@
     prevBtn.addEventListener('click', function() { goPrev(); resetAutoplay(); });
     nextBtn.addEventListener('click', function() { goNext(); resetAutoplay(); });
 
-    // 自动轮播（4秒）
+    // 自动轮播（2秒）
     function startAutoplay() {
         clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(goNext, 4000);
+        autoplayTimer = setInterval(goNext, 2000);
     }
 
     function resetAutoplay() {
