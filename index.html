@@ -109,38 +109,137 @@
             transition: var(--transition);
         }
 
-        /* ========== Hero 区域（头像 + 文字） ========== */
+        /* ========== Hero 区域（流星背景 + 头像） ========== */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+            background: linear-gradient(160deg, #0a0e1a 0%, #111827 40%, #0a0e1a 100%);
             color: #fff;
             padding: 120px 20px 80px;
             position: relative;
             overflow: hidden;
         }
 
+        /* 星空背景粒子 */
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: radial-gradient(circle at 70% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 85% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 50% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 90% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 35% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 60% 5%, rgba(255,255,255,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 45% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 95% 85%, rgba(255,255,255,0.3) 0%, transparent 100%);
+            animation: twinkle 4s ease-in-out infinite alternate;
         }
 
+        @keyframes twinkle {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* 柔光氛围 */
         .hero::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40%;
-            height: 60%;
-            background: radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.06) 0%, transparent 50%);
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
+
+        /* 流星动画 */
+        .meteor {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .meteor::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: 1.5px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+            transform: rotate(-45deg);
+            transform-origin: 0 0;
+        }
+
+        .meteor-1 {
+            top: 8%;
+            left: 60%;
+            animation: meteorFall 3s ease-in 1s infinite;
+        }
+
+        .meteor-2 {
+            top: 5%;
+            left: 80%;
+            animation: meteorFall 4s ease-in 3.5s infinite;
+        }
+
+        .meteor-3 {
+            top: 12%;
+            left: 40%;
+            animation: meteorFall 3.5s ease-in 6s infinite;
+        }
+
+        .meteor-4 {
+            top: 3%;
+            left: 70%;
+            animation: meteorFall 2.8s ease-in 8s infinite;
+        }
+
+        .meteor-5 {
+            top: 15%;
+            left: 50%;
+            animation: meteorFall 3.2s ease-in 4.5s infinite;
+        }
+
+        .meteor-6 {
+            top: 6%;
+            left: 90%;
+            animation: meteorFall 4.2s ease-in 10s infinite;
+        }
+
+        @keyframes meteorFall {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(1);
+            }
+            5% {
+                opacity: 1;
+            }
+            30% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-300px, 300px) scale(0.3);
+            }
+        }
+
+        /* ... existing hero-inner, hero-text 等样式保持不变 ... */
 
         .hero-inner {
             max-width: 1200px;
@@ -771,6 +870,12 @@
 
 <!-- ========== Hero（头像 + 文字双栏） ========== -->
 <section class="hero">
+    <div class="meteor meteor-1"></div>
+    <div class="meteor meteor-2"></div>
+    <div class="meteor meteor-3"></div>
+    <div class="meteor meteor-4"></div>
+    <div class="meteor meteor-5"></div>
+    <div class="meteor meteor-6"></div>
     <div class="hero-inner">
         <div class="hero-text">
             <div class="hero-badge">✦ 融媒体记者 · 数据新闻</div>
