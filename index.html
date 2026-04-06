@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>黄钰慧 | 融媒体记者作品集</title>
     <style>
-        /* ========== 基础重置与全局样式 ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary-color: #1a1a2e;
+            --primary-color: #0f172a;
+            --primary-light: #1e293b;
             --accent-color: #e94560;
             --accent-hover: #c73a52;
-            --bg-light: #f8f9fa;
+            --accent-gold: #f59e0b;
+            --bg-light: #f1f5f9;
             --bg-white: #ffffff;
-            --text-dark: #2d2d2d;
-            --text-gray: #6c757d;
-            --text-light: #999;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
-            --radius: 12px;
-            --transition: all 0.3s ease;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --text-light: #94a3b8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 20px 48px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -38,11 +40,13 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 0 40px;
             transition: var(--transition);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .navbar-inner {
@@ -55,19 +59,19 @@
         }
 
         .nav-logo {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 2px;
         }
 
-        .nav-logo span { color: var(--accent-color); }
+        .nav-logo span { color: var(--accent-gold); }
 
         .nav-links { display: flex; gap: 28px; list-style: none; }
 
         .nav-links a {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.88rem;
             font-weight: 500;
             transition: var(--transition);
             position: relative;
@@ -82,7 +86,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-color);
+            background: var(--accent-gold);
             transition: var(--transition);
         }
 
@@ -105,84 +109,142 @@
             transition: var(--transition);
         }
 
-        /* ========== Hero 区域（照片背景版） ========== */
+        /* ========== Hero 区域（头像 + 文字） ========== */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('工作照片/WechatIMG40955.jpg') center center / cover no-repeat;
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
             color: #fff;
-            text-align: center;
             padding: 120px 20px 80px;
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.75) 0%, rgba(15, 52, 96, 0.65) 50%, rgba(26, 26, 46, 0.8) 100%);
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
         }
 
-        .hero-content { position: relative; z-index: 1; }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40%;
+            height: 60%;
+            background: radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.06) 0%, transparent 50%);
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text { max-width: 600px; }
 
         .hero-badge {
-            display: inline-block;
-            background: rgba(233, 69, 96, 0.25);
-            border: 1px solid rgba(233, 69, 96, 0.5);
-            color: #ff6b81;
-            padding: 6px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--accent-gold);
+            padding: 6px 18px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             letter-spacing: 1px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 800;
             margin-bottom: 16px;
-            letter-spacing: 6px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .name-highlight {
+            background: linear-gradient(135deg, var(--accent-gold), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.85);
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.75);
             margin-bottom: 12px;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .hero-desc {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.6);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 36px;
+            line-height: 1.9;
         }
 
         .hero-stats {
             display: flex;
-            justify-content: center;
-            gap: 48px;
-            margin-top: 40px;
+            gap: 40px;
         }
 
-        .hero-stat-item { text-align: center; }
+        .hero-stat-item {
+            text-align: left;
+            padding-left: 16px;
+            border-left: 2px solid rgba(245, 158, 11, 0.3);
+        }
 
         .hero-stat-number {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--accent-color);
-            text-shadow: 0 2px 10px rgba(233, 69, 96, 0.3);
+            color: var(--accent-gold);
         }
 
         .hero-stat-label {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
-            margin-top: 4px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 2px;
+        }
+
+        .hero-avatar-wrapper {
+            position: relative;
+        }
+
+        .hero-avatar-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-color));
+            opacity: 0.6;
+            filter: blur(20px);
+        }
+
+        .hero-avatar {
+            width: 320px;
+            height: 400px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 20px;
+            border: 3px solid rgba(255,255,255,0.1);
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
         }
 
         .hero-scroll-hint {
@@ -191,7 +253,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.3);
             font-size: 0.8rem;
             animation: bounce 2s infinite;
         }
@@ -214,22 +276,22 @@
         }
 
         .section-header h2 {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .section-header p {
             color: var(--text-gray);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .section-divider {
-            width: 48px;
+            width: 40px;
             height: 3px;
-            background: var(--accent-color);
-            margin: 16px auto 0;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-gold));
+            margin: 14px auto 0;
             border-radius: 2px;
         }
 
@@ -244,7 +306,7 @@
         }
 
         .about-info h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 16px;
             color: var(--primary-color);
         }
@@ -253,6 +315,7 @@
             color: var(--text-gray);
             margin-bottom: 16px;
             line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         .about-tags {
@@ -263,34 +326,34 @@
         }
 
         .about-tag {
-            background: var(--bg-light);
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
             color: var(--text-dark);
             padding: 6px 16px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
         }
 
-        .about-highlights {
-            display: grid;
-            gap: 16px;
-        }
+        .about-highlights { display: grid; gap: 14px; }
 
         .highlight-card {
             background: var(--bg-light);
             padding: 20px 24px;
-            border-radius: var(--radius);
+            border-radius: var(--radius-sm);
             border-left: 3px solid var(--accent-color);
+            transition: var(--transition);
         }
 
+        .highlight-card:hover { transform: translateX(4px); }
+
         .highlight-card h4 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 6px;
             color: var(--primary-color);
         }
 
         .highlight-card p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-gray);
         }
 
@@ -300,12 +363,15 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-md);
-            margin-bottom: 40px;
+            margin-bottom: 36px;
+            transition: var(--transition);
         }
+
+        .project-card:hover { box-shadow: var(--shadow-lg); }
 
         .project-hero {
             position: relative;
-            height: 280px;
+            height: 300px;
             overflow: hidden;
         }
 
@@ -313,40 +379,38 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
-        .project-card:hover .project-hero img {
-            transform: scale(1.05);
-        }
+        .project-card:hover .project-hero img { transform: scale(1.04); }
 
         .project-hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.2) 60%, transparent 100%);
+            background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.3) 50%, transparent 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 32px;
+            padding: 36px;
         }
 
         .project-hero-overlay h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: #fff;
             font-weight: 700;
             margin-bottom: 8px;
         }
 
         .project-hero-overlay p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.92rem;
         }
 
         .project-badge {
             display: inline-block;
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), #f43f5e);
             color: #fff;
-            padding: 4px 14px;
+            padding: 5px 16px;
             border-radius: 50px;
             font-size: 0.75rem;
             font-weight: 600;
@@ -357,12 +421,12 @@
         .project-body { padding: 32px; }
 
         .project-sub-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .project-sub-title:not(:first-child) { margin-top: 28px; }
@@ -370,23 +434,23 @@
         .project-links {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 12px;
+            gap: 10px;
         }
 
         .project-link-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 16px;
+            padding: 11px 16px;
             background: var(--bg-light);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-dark);
         }
 
         .project-link-item:hover {
-            background: #eef;
+            background: #e0e7ff;
             transform: translateX(4px);
         }
 
@@ -394,7 +458,7 @@
             flex-shrink: 0;
             width: 28px;
             height: 28px;
-            border-radius: 6px;
+            border-radius: 7px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -418,6 +482,7 @@
         .project-link-item .link-arrow {
             color: var(--text-light);
             transition: var(--transition);
+            flex-shrink: 0;
         }
 
         .project-link-item:hover .link-arrow { color: var(--accent-color); }
@@ -426,12 +491,12 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            gap: 14px;
         }
 
         .gallery-item {
             position: relative;
-            border-radius: var(--radius);
+            border-radius: var(--radius-sm);
             overflow: hidden;
             aspect-ratio: 4/3;
             cursor: pointer;
@@ -441,10 +506,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
         }
 
-        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item:hover img { transform: scale(1.06); }
 
         .gallery-item .gallery-caption {
             position: absolute;
@@ -452,9 +517,9 @@
             left: 0;
             right: 0;
             padding: 12px 16px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
             color: #fff;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 500;
             transform: translateY(100%);
             transition: transform 0.3s ease;
@@ -472,7 +537,7 @@
         .works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 24px;
+            gap: 20px;
         }
 
         .work-card {
@@ -483,15 +548,17 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            border: 1px solid #e2e8f0;
         }
 
         .work-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
+            border-color: transparent;
         }
 
         .work-card-header {
-            padding: 24px 24px 0;
+            padding: 20px 22px 0;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -501,7 +568,7 @@
             display: inline-block;
             padding: 4px 12px;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
@@ -514,28 +581,28 @@
         .platform-tv { background: #fff7e6; color: #d48806; }
 
         .work-stats {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-light);
             text-align: right;
         }
 
         .work-card-body {
-            padding: 16px 24px 24px;
+            padding: 14px 22px 22px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .work-card-body h3 {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--primary-color);
             line-height: 1.5;
         }
 
         .work-card-body p {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--text-gray);
             line-height: 1.7;
             flex: 1;
@@ -545,33 +612,32 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-top: 16px;
+            margin-top: 14px;
             color: var(--accent-color);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             transition: var(--transition);
         }
 
         .work-link:hover { color: var(--accent-hover); gap: 10px; }
-
         .work-link::after { content: '→'; transition: var(--transition); }
 
-        /* ========== 分类标签筛选 ========== */
+        /* ========== 分类标签 ========== */
         .category-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 36px;
+            gap: 10px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
         }
 
         .category-tab {
-            padding: 8px 24px;
+            padding: 8px 22px;
             border-radius: 50px;
-            border: 1.5px solid #e0e0e0;
+            border: 1.5px solid #e2e8f0;
             background: transparent;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             color: var(--text-gray);
             transition: var(--transition);
@@ -579,37 +645,37 @@
 
         .category-tab:hover,
         .category-tab.active {
-            background: var(--accent-color);
+            background: var(--primary-color);
             color: #fff;
-            border-color: var(--accent-color);
+            border-color: var(--primary-color);
         }
 
-        /* ========== 获奖经历 ========== */
+        /* ========== 获奖 ========== */
         .awards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 16px;
         }
 
         .award-card {
             background: var(--bg-white);
-            padding: 24px;
-            border-radius: var(--radius);
+            padding: 22px;
+            border-radius: var(--radius-sm);
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
-            border-top: 3px solid var(--accent-color);
+            border-left: 3px solid var(--accent-gold);
         }
 
         .award-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
         .award-card h4 {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--primary-color);
             margin-bottom: 4px;
         }
 
         .award-card p {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-light);
         }
 
@@ -621,12 +687,8 @@
             padding: 80px 20px;
         }
 
-        .contact-section h2 {
-            font-size: 2rem;
-            margin-bottom: 12px;
-        }
-
-        .contact-section .section-divider { background: var(--accent-color); margin-bottom: 32px; }
+        .contact-section h2 { font-size: 1.9rem; margin-bottom: 12px; }
+        .contact-section .section-divider { margin-bottom: 32px; }
 
         .contact-info {
             display: flex;
@@ -638,30 +700,30 @@
         .contact-item { text-align: center; }
 
         .contact-item .label {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.4);
             margin-bottom: 4px;
         }
 
-        .contact-item .value {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+        .contact-item .value { font-size: 1.05rem; font-weight: 500; }
 
-        /* ========== Footer ========== */
         .footer {
-            background: #111;
-            color: rgba(255,255,255,0.4);
+            background: #0a0f1a;
+            color: rgba(255,255,255,0.3);
             text-align: center;
             padding: 24px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
 
         /* ========== 响应式 ========== */
         @media (max-width: 768px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-text { max-width: 100%; }
+            .hero-stats { justify-content: center; }
+            .hero-stat-item { text-align: center; border-left: none; padding-left: 0; }
+            .hero-avatar-wrapper { display: flex; justify-content: center; order: -1; }
+            .hero-avatar { width: 200px; height: 250px; }
             .hero h1 { font-size: 2.2rem; }
-            .hero-stats { gap: 24px; flex-wrap: wrap; }
-            .hero-stat-number { font-size: 1.5rem; }
             .about-grid { grid-template-columns: 1fr; }
             .works-grid { grid-template-columns: 1fr; }
             .awards-grid { grid-template-columns: 1fr; }
@@ -678,7 +740,7 @@
                 top: 64px;
                 left: 0;
                 right: 0;
-                background: rgba(26, 26, 46, 0.98);
+                background: rgba(15, 23, 42, 0.98);
                 padding: 20px 40px;
                 gap: 16px;
             }
@@ -707,26 +769,31 @@
     </div>
 </nav>
 
-<!-- ========== Hero（照片背景） ========== -->
+<!-- ========== Hero（头像 + 文字双栏） ========== -->
 <section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge">融媒体记者 · 数据新闻</div>
-        <h1>黄钰慧</h1>
-        <p class="hero-subtitle">浙江广电集团 · 1818黄金眼 融媒体记者</p>
-        <p class="hero-desc">中国传媒大学新闻学（数据新闻报道方向）· 中共党员<br>深耕民生新闻、体育报道、数据新闻，用镜头记录真实，用数据讲述故事</p>
-        <div class="hero-stats">
-            <div class="hero-stat-item">
-                <div class="hero-stat-number">50w+</div>
-                <div class="hero-stat-label">单条最高播放量</div>
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-badge">✦ 融媒体记者 · 数据新闻</div>
+            <h1>你好，我是<br><span class="name-highlight">黄钰慧</span></h1>
+            <p class="hero-subtitle">浙江广电集团 · 1818黄金眼 融媒体记者</p>
+            <p class="hero-desc">中国传媒大学新闻学（数据新闻报道方向）· 中共党员<br>深耕民生新闻、体育报道、数据新闻，用镜头记录真实，用数据讲述故事</p>
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">50w+</div>
+                    <div class="hero-stat-label">单条最高播放量</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">1340w+</div>
+                    <div class="hero-stat-label">微博最高阅读量</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">20+</div>
+                    <div class="hero-stat-label">代表作品</div>
+                </div>
             </div>
-            <div class="hero-stat-item">
-                <div class="hero-stat-number">1340w+</div>
-                <div class="hero-stat-label">微博最高阅读量</div>
-            </div>
-            <div class="hero-stat-item">
-                <div class="hero-stat-number">20+</div>
-                <div class="hero-stat-label">代表作品</div>
-            </div>
+        </div>
+        <div class="hero-avatar-wrapper">
+            <img class="hero-avatar" src="工作照片/个人头像.JPG" alt="黄钰慧">
         </div>
     </div>
     <div class="hero-scroll-hint">↓ 向下滚动探索更多</div>
@@ -782,7 +849,7 @@
             <div class="section-divider"></div>
         </div>
 
-        <!-- 项目1：浙BA -->
+        <!-- 浙BA -->
         <div class="project-card">
             <div class="project-hero">
                 <img src="工作照片/WechatIMG40955.jpg" alt="浙BA赛事报道">
@@ -795,149 +862,43 @@
             <div class="project-body">
                 <div class="project-sub-title">📺 新闻长片（10条）</div>
                 <div class="project-links">
-                    <a href="http://wap.cztv.com/tv/102/2566517.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">读秒三分绝杀 浙BA真的精彩</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2775501.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">客场生死突围 台州挺进八强</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2763989.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">冬至观赛暖胃暖心 宁波主场完胜对手</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2673821.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">余姚舟山再交锋</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2609047.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">"黑米糕"串门"梁弄大糕"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2604534.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">宁波长兴再次交手</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2600989.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">主场二度交锋 余姚逆风翻盘</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2591751.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">杭州客场胜余姚 MVP聊"家乡"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2584703.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">降温不降热情 第二现场烟火气十足</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2533613.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">敲锣呐喊气氛火热 富阳挺进今晚决赛</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="http://wap.cztv.com/tv/102/2566517.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">读秒三分绝杀 浙BA真的精彩</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2775501.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">客场生死突围 台州挺进八强</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2763989.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">冬至观赛暖胃暖心 宁波主场完胜对手</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2673821.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">余姚舟山再交锋</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2609047.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">"黑米糕"串门"梁弄大糕"</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2604534.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">宁波长兴再次交手</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2600989.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">主场二度交锋 余姚逆风翻盘</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2591751.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">杭州客场胜余姚 MVP聊"家乡"</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2584703.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">降温不降热情 第二现场烟火气十足</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2533613.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">敲锣呐喊气氛火热 富阳挺进今晚决赛</span><span class="link-arrow">→</span></a>
                 </div>
-
                 <div class="project-sub-title">📡 现场直播连线（7条）</div>
                 <div class="project-links">
-                    <a href="http://wap.cztv.com/tv/102/2584037.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">余姚客场挑战诸暨</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2550969.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">长兴VS宁波 场内劲爆场外热</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2533249.html?play=1" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">杭州决赛最后一个名额</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/tv/102/2673370.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">余姚主场再战舟山</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/live/9139/2604038.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">宁波VS长兴 中场第二观赛点直播</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/live/9064/2583984.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">诸暨VS余姚 中场第二观赛点直播</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="http://wap.cztv.com/live/9229/2673361.html" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-tv">TV</div>
-                        <span class="link-title">余姚VS舟山 中场第二观赛点直播</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="http://wap.cztv.com/tv/102/2584037.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">余姚客场挑战诸暨</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2550969.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">长兴VS宁波 场内劲爆场外热</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2533249.html?play=1" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">杭州决赛最后一个名额</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/tv/102/2673370.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">余姚主场再战舟山</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/live/9139/2604038.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">宁波VS长兴 中场第二观赛点直播</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/live/9064/2583984.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">诸暨VS余姚 中场第二观赛点直播</span><span class="link-arrow">→</span></a>
+                    <a href="http://wap.cztv.com/live/9229/2673361.html" target="_blank" class="project-link-item"><div class="link-icon icon-tv">TV</div><span class="link-title">余姚VS舟山 中场第二观赛点直播</span><span class="link-arrow">→</span></a>
                 </div>
-
                 <div class="project-sub-title">📱 抖音短视频（9条）</div>
                 <div class="project-links">
-                    <a href="https://v.douyin.com/xmkXjlk9th0/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">杭州温州两队时隔66日再交锋</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/G4WbN9uP-FI/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">余姚队迎来首个主场迎战湖州队</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/2iZeu_p38Jg/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">浙BA诸暨队迎战舟山队</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/GZD7PArzrbk/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">浙BA余姚队主场对阵舟山队</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/-HJ-mwyaf90/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">诸暨队76:74战胜舟山队</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/wAaJEJsBt4Y/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">富阳队VS萧山队 富阳"铜锣哥"登场</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/prNQ0_1rN1A/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">萧山球迷坐上了富阳观众席</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/DkdzGIW7h9c/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">诸暨队潘幸辰投进关键三分</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/U_xNxCztw3I/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">浙BA场外商贩生意火爆</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="https://v.douyin.com/xmkXjlk9th0/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">杭州温州两队时隔66日再交锋</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/G4WbN9uP-FI/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">余姚队迎来首个主场迎战湖州队</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/2iZeu_p38Jg/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">浙BA诸暨队迎战舟山队</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/GZD7PArzrbk/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">浙BA余姚队主场对阵舟山队</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/-HJ-mwyaf90/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">诸暨队76:74战胜舟山队</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/wAaJEJsBt4Y/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">富阳队VS萧山队 富阳"铜锣哥"登场</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/prNQ0_1rN1A/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">萧山球迷坐上了富阳观众席</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/DkdzGIW7h9c/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">诸暨队潘幸辰投进关键三分</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/U_xNxCztw3I/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">浙BA场外商贩生意火爆</span><span class="link-arrow">→</span></a>
                 </div>
             </div>
         </div>
 
-        <!-- 项目2：钰见数贸会 -->
+        <!-- 钰见数贸会 -->
         <div class="project-card">
             <div class="project-hero">
                 <img src="工作照片/WechatIMG40957.jpg" alt="数贸会报道">
@@ -950,62 +911,25 @@
             <div class="project-body">
                 <div class="project-sub-title">📺 新闻报道 & 微博热点</div>
                 <div class="project-links">
-                    <a href="https://weibo.com/2334162530/Q65yRprBU" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-weibo">微</div>
-                        <span class="link-title">机器人又"整活"了！宇树科技机器人要在数贸会打拳击</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://weibo.com/2334162530/Q6wiywHkl" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-weibo">微</div>
-                        <span class="link-title">在数贸会遇到钢铁侠同款眼镜</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://weibo.com/2334162530/Q6OAeDWqr" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-weibo">微</div>
-                        <span class="link-title">两千万的"空中专机" "低空"概念走向现实</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://weibo.com/2334162530/Q6XoZ6Ijq" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-weibo">微</div>
-                        <span class="link-title">收官！科技公司在数贸会收获十万个订单</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="https://weibo.com/2334162530/Q65yRprBU" target="_blank" class="project-link-item"><div class="link-icon icon-weibo">微</div><span class="link-title">机器人又"整活"了！宇树科技机器人要在数贸会打拳击</span><span class="link-arrow">→</span></a>
+                    <a href="https://weibo.com/2334162530/Q6wiywHkl" target="_blank" class="project-link-item"><div class="link-icon icon-weibo">微</div><span class="link-title">在数贸会遇到钢铁侠同款眼镜</span><span class="link-arrow">→</span></a>
+                    <a href="https://weibo.com/2334162530/Q6OAeDWqr" target="_blank" class="project-link-item"><div class="link-icon icon-weibo">微</div><span class="link-title">两千万的"空中专机" "低空"概念走向现实</span><span class="link-arrow">→</span></a>
+                    <a href="https://weibo.com/2334162530/Q6XoZ6Ijq" target="_blank" class="project-link-item"><div class="link-icon icon-weibo">微</div><span class="link-title">收官！科技公司在数贸会收获十万个订单</span><span class="link-arrow">→</span></a>
                 </div>
-
                 <div class="project-sub-title">📱 抖音短视频（5条）</div>
                 <div class="project-links">
-                    <a href="https://v.douyin.com/b4ITj6Wykiw/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">数贸会盘点"成绩单"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/q4jOOVENi5w/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">记者和智能仿生手比握力</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/GnR432ivXrw/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">两千万的"空中专机"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/A15kNDween4/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">第四届全球数字贸易博览会探营</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/SnLlNenYF8k/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">从福建来杭州感受数贸会</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="https://v.douyin.com/b4ITj6Wykiw/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">数贸会盘点"成绩单"</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/q4jOOVENi5w/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">记者和智能仿生手比握力</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/GnR432ivXrw/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">两千万的"空中专机"</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/A15kNDween4/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">第四届全球数字贸易博览会探营</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/SnLlNenYF8k/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">从福建来杭州感受数贸会</span><span class="link-arrow">→</span></a>
                 </div>
             </div>
         </div>
 
-        <!-- 项目3：巴黎奥运会 -->
+        <!-- 巴黎奥运会 -->
         <div class="project-card">
-            <div class="project-hero" style="background: linear-gradient(135deg, #002654, #CE1126); height: 280px; display: flex; align-items: center; justify-content: center;">
+            <div class="project-hero" style="background: linear-gradient(135deg, #002654, #CE1126); height: 300px;">
                 <div class="project-hero-overlay" style="background: linear-gradient(135deg, rgba(0,38,84,0.7), rgba(206,17,38,0.5));">
                     <div class="project-badge">🇫🇷 国际赛事</div>
                     <h3>2024 巴黎奥运会全媒体报道</h3>
@@ -1015,70 +939,21 @@
             <div class="project-body">
                 <div class="project-sub-title">📺 新闻长片（7条）</div>
                 <div class="project-links">
-                    <a href="https://www.bilibili.com/video/BV1gE421A7Ck" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">"朝流兄弟"在巴黎，"踏破铁鞋"找"托尼"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://www.bilibili.com/video/BV1T4421f7bG" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">体验骑行文化 "成本"有些心疼</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://www.bilibili.com/video/BV12Z421N7XE" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">"莎头组合"混双夺金 "朝流兄弟"挑战合影</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://www.bilibili.com/video/BV1gb421J71g" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">从北京到巴黎一万多公里 他骑自行车去的</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://www.bilibili.com/video/BV1ef421q7WA" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">铁人三项开赛在即 塞纳河水质"不达标"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://www.bilibili.com/video/BV1Li421a7yM" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">法国巴黎街头，又见"义乌"制造</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://www.bilibili.com/video/BV1HM4m117tD" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-bilibili">B</div>
-                        <span class="link-title">奥运开幕在即 "建儿"先拿"金牌"</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="https://www.bilibili.com/video/BV1gE421A7Ck" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">"朝流兄弟"在巴黎，"踏破铁鞋"找"托尼"</span><span class="link-arrow">→</span></a>
+                    <a href="https://www.bilibili.com/video/BV1T4421f7bG" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">体验骑行文化 "成本"有些心疼</span><span class="link-arrow">→</span></a>
+                    <a href="https://www.bilibili.com/video/BV12Z421N7XE" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">"莎头组合"混双夺金 "朝流兄弟"挑战合影</span><span class="link-arrow">→</span></a>
+                    <a href="https://www.bilibili.com/video/BV1gb421J71g" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">从北京到巴黎一万多公里 他骑自行车去的</span><span class="link-arrow">→</span></a>
+                    <a href="https://www.bilibili.com/video/BV1ef421q7WA" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">铁人三项开赛在即 塞纳河水质"不达标"</span><span class="link-arrow">→</span></a>
+                    <a href="https://www.bilibili.com/video/BV1Li421a7yM" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">法国巴黎街头，又见"义乌"制造</span><span class="link-arrow">→</span></a>
+                    <a href="https://www.bilibili.com/video/BV1HM4m117tD" target="_blank" class="project-link-item"><div class="link-icon icon-bilibili">B</div><span class="link-title">奥运开幕在即 "建儿"先拿"金牌"</span><span class="link-arrow">→</span></a>
                 </div>
-
                 <div class="project-sub-title">📱 抖音短视频（5条）</div>
                 <div class="project-links">
-                    <a href="https://v.douyin.com/IGt-h-7VaTE/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">巴黎奥运会男子4×100米混合泳接力决赛</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/BDsk6j6vCm4/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">中国队拿下女子4×100米混合泳接力铜牌</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/OMG2fEUA35o/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">奥运女子500米双人皮艇赛 杭州17岁小将</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/MFqQ9SIGOEs/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">温州人和陕西师傅在巴黎开面馆</span>
-                        <span class="link-arrow">→</span>
-                    </a>
-                    <a href="https://v.douyin.com/-EsPTQduq2Y/" target="_blank" class="project-link-item">
-                        <div class="link-icon icon-douyin">DY</div>
-                        <span class="link-title">1818朋友圈扩圈到巴黎啦</span>
-                        <span class="link-arrow">→</span>
-                    </a>
+                    <a href="https://v.douyin.com/IGt-h-7VaTE/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">巴黎奥运会男子4×100米混合泳接力决赛</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/BDsk6j6vCm4/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">中国队拿下女子4×100米混合泳接力铜牌</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/OMG2fEUA35o/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">奥运女子500米双人皮艇赛 杭州17岁小将</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/MFqQ9SIGOEs/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">温州人和陕西师傅在巴黎开面馆</span><span class="link-arrow">→</span></a>
+                    <a href="https://v.douyin.com/-EsPTQduq2Y/" target="_blank" class="project-link-item"><div class="link-icon icon-douyin">DY</div><span class="link-title">1818朋友圈扩圈到巴黎啦</span><span class="link-arrow">→</span></a>
                 </div>
             </div>
         </div>
@@ -1096,6 +971,14 @@
             <div class="gallery-item large">
                 <img src="工作照片/WechatIMG40956.jpg" alt="浙BA长兴主场报道">
                 <div class="gallery-caption">🏀 浙BA长兴主场 · 赛事报道</div>
+            </div>
+            <div class="gallery-item">
+                <img src="工作照片/65131.jpg" alt="浙BA象山赛区出镜报道">
+                <div class="gallery-caption">🏀 浙BA象山赛区 · 出镜报道</div>
+            </div>
+            <div class="gallery-item">
+                <img src="工作照片/65134.jpg" alt="浙BA象山赛区采访">
+                <div class="gallery-caption">🏀 浙BA象山赛区 · 嘉宾采访</div>
             </div>
             <div class="gallery-item">
                 <img src="工作照片/WechatIMG40949.jpg" alt="台风贝碧嘉直播采访">
@@ -1137,193 +1020,76 @@
             <p>深耕民生维权报道，多条新闻全网播放量超30万</p>
             <div class="section-divider"></div>
         </div>
-
         <div class="category-tabs">
             <button class="category-tab active" onclick="filterWorks('all', this)">全部</button>
             <button class="category-tab" onclick="filterWorks('bilibili', this)">哔哩哔哩</button>
             <button class="category-tab" onclick="filterWorks('weibo', this)">微博</button>
             <button class="category-tab" onclick="filterWorks('douyin', this)">抖音</button>
         </div>
-
         <div class="works-grid" id="tvWorksGrid">
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 52.3w</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>相邻车位有差别 物业划线不专业？</h3>
-                    <p>"邻居车位比我宽40厘米？老人气得天天念叨！"</p>
-                    <a href="https://www.bilibili.com/video/BV1E3TezbEdh" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 52.3w</div></div>
+                <div class="work-card-body"><h3>相邻车位有差别 物业划线不专业？</h3><p>"邻居车位比我宽40厘米？老人气得天天念叨！"</p><a href="https://www.bilibili.com/video/BV1E3TezbEdh" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 49.4w · 评论 9701</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>"忠粉"的疑惑</h3>
-                    <p>小米SU7 Max新车摆臂断裂，车主质疑质量问题。</p>
-                    <a href="https://www.bilibili.com/video/BV1AyNeezEGH" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 49.4w · 评论 9701</div></div>
+                <div class="work-card-body"><h3>"忠粉"的疑惑</h3><p>小米SU7 Max新车摆臂断裂，车主质疑质量问题。</p><a href="https://www.bilibili.com/video/BV1AyNeezEGH" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 46.7w</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>"奥迪A7"尾翼 经常不太听话？</h3>
-                    <p>落地价60多万的奥迪A7，补漆后尾翼出现故障。</p>
-                    <a href="https://www.bilibili.com/video/BV1hiRbYVEx2" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 46.7w</div></div>
+                <div class="work-card-body"><h3>"奥迪A7"尾翼 经常不太听话？</h3><p>落地价60多万的奥迪A7，补漆后尾翼出现故障。</p><a href="https://www.bilibili.com/video/BV1hiRbYVEx2" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 37.7w</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>两千万"芝澜月华轩" 验房后"心情很不好"</h3>
-                    <p>花两千万买房，验房时发现120个问题，业主感叹"天塌了"。</p>
-                    <a href="https://www.bilibili.com/video/BV1mjHUzHEq3" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 37.7w</div></div>
+                <div class="work-card-body"><h3>两千万"芝澜月华轩" 验房后"心情很不好"</h3><p>花两千万买房，验房时发现120个问题，业主感叹"天塌了"。</p><a href="https://www.bilibili.com/video/BV1mjHUzHEq3" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 34.5w</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>生日写真升级 感慨"耳根子软"</h3>
-                    <p>为30岁生日拍写真，被198元广告吸引，"一时上头"付了三千六。</p>
-                    <a href="https://www.bilibili.com/video/BV1AQzCYvE9D" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 34.5w</div></div>
+                <div class="work-card-body"><h3>生日写真升级 感慨"耳根子软"</h3><p>为30岁生日拍写真，被198元广告吸引，"一时上头"付了三千六。</p><a href="https://www.bilibili.com/video/BV1AQzCYvE9D" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 33.5w · 评论 2510</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>"无畏契约"被封号 小伙分析三种可能</h3>
-                    <p>"无所畏惧"连续申诉，被追加10年封禁期。</p>
-                    <a href="https://www.bilibili.com/video/BV1XCNdeUEog" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 33.5w · 评论 2510</div></div>
+                <div class="work-card-body"><h3>"无畏契约"被封号 小伙分析三种可能</h3><p>"无所畏惧"连续申诉，被追加10年封禁期。</p><a href="https://www.bilibili.com/video/BV1XCNdeUEog" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="bilibili">
-                <div class="work-card-header">
-                    <span class="work-platform platform-bilibili">B站</span>
-                    <div class="work-stats">播放 32.3w</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>租期内没有限制 为何讲究公里数</h3>
-                    <p>月租4700元，4个月开了5万多公里，租车公司吃不消了。</p>
-                    <a href="https://www.bilibili.com/video/BV1Uza4zpEDe" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-bilibili">B站</span><div class="work-stats">播放 32.3w</div></div>
+                <div class="work-card-body"><h3>租期内没有限制 为何讲究公里数</h3><p>月租4700元，4个月开了5万多公里，租车公司吃不消了。</p><a href="https://www.bilibili.com/video/BV1Uza4zpEDe" target="_blank" class="work-link">观看视频</a></div>
             </div>
 
+            <!-- 微博作品 -->
             <div class="work-card" data-category="weibo">
-                <div class="work-card-header">
-                    <span class="work-platform platform-weibo">微博</span>
-                    <div class="work-stats">阅读 1340.6w · 讨论 705</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>找"三条龙"带货 遇上"回款困难"</h3>
-                    <p>微博阅读量超1340万，聚焦直播带货行业乱象。</p>
-                    <a href="https://weibo.com/2334162530/PoVNSmefS" target="_blank" class="work-link">查看微博</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-weibo">微博</span><div class="work-stats">阅读 1340.6w · 讨论 705</div></div>
+                <div class="work-card-body"><h3>找"三条龙"带货 遇上"回款困难"</h3><p>微博阅读量超1340万，聚焦直播带货行业乱象。</p><a href="https://weibo.com/2334162530/PoVNSmefS" target="_blank" class="work-link">查看微博</a></div>
             </div>
-
             <div class="work-card" data-category="weibo">
-                <div class="work-card-header">
-                    <span class="work-platform platform-weibo">微博</span>
-                    <div class="work-stats">阅读 1231.8w · 讨论 1696</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>两千万"芝澜月华轩" 验房后"心情很不好"</h3>
-                    <p>微博阅读量超1231万，引发广泛社会关注。</p>
-                    <a href="https://weibo.com/2334162530/Q3Od4eOWY" target="_blank" class="work-link">查看微博</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-weibo">微博</span><div class="work-stats">阅读 1231.8w · 讨论 1696</div></div>
+                <div class="work-card-body"><h3>两千万"芝澜月华轩" 验房后"心情很不好"</h3><p>微博阅读量超1231万，引发广泛社会关注。</p><a href="https://weibo.com/2334162530/Q3Od4eOWY" target="_blank" class="work-link">查看微博</a></div>
             </div>
-
             <div class="work-card" data-category="weibo">
-                <div class="work-card-header">
-                    <span class="work-platform platform-weibo">微博</span>
-                    <div class="work-stats">阅读 335.8w · 讨论 864</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>单间月租金八百 电费一个月四百</h3>
-                    <p>聚焦租房电费乱象，引发租客群体广泛共鸣。</p>
-                    <a href="https://weibo.com/2334162530/QoWhh0NZq" target="_blank" class="work-link">查看微博</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-weibo">微博</span><div class="work-stats">阅读 335.8w · 讨论 864</div></div>
+                <div class="work-card-body"><h3>单间月租金八百 电费一个月四百</h3><p>聚焦租房电费乱象，引发租客群体广泛共鸣。</p><a href="https://weibo.com/2334162530/QoWhh0NZq" target="_blank" class="work-link">查看微博</a></div>
             </div>
 
+            <!-- 抖音作品 -->
             <div class="work-card" data-category="douyin">
-                <div class="work-card-header">
-                    <span class="work-platform platform-douyin">抖音</span>
-                    <div class="work-stats">❤️ 1.8w · 💬 1969</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>中非混血少年安仔来杭试训</h3>
-                    <p>记录中非混血少年的篮球梦想，点赞1.8万。</p>
-                    <a href="https://v.douyin.com/QRLuCqZxffs/" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-douyin">抖音</span><div class="work-stats">❤️ 1.8w · 💬 1969</div></div>
+                <div class="work-card-body"><h3>中非混血少年安仔来杭试训</h3><p>记录中非混血少年的篮球梦想，点赞1.8万。</p><a href="https://v.douyin.com/QRLuCqZxffs/" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="douyin">
-                <div class="work-card-header">
-                    <span class="work-platform platform-douyin">抖音</span>
-                    <div class="work-stats">❤️ 3322 · 转发 1839</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>浙江发布海啸黄色预警</h3>
-                    <p>突发新闻快速响应，及时传递预警信息。</p>
-                    <a href="https://v.douyin.com/kSedxRx2LfM/" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-douyin">抖音</span><div class="work-stats">❤️ 3322 · 转发 1839</div></div>
+                <div class="work-card-body"><h3>浙江发布海啸黄色预警</h3><p>突发新闻快速响应，及时传递预警信息。</p><a href="https://v.douyin.com/kSedxRx2LfM/" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="douyin">
-                <div class="work-card-header">
-                    <span class="work-platform platform-douyin">抖音</span>
-                    <div class="work-stats">❤️ 1563 · 💬 1151</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>妻子逛杭州大厦摔成九级残疾</h3>
-                    <p>民生维权类短视频，关注消费者安全权益。</p>
-                    <a href="https://v.douyin.com/mA9EmpYbRiQ/" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-douyin">抖音</span><div class="work-stats">❤️ 1563 · 💬 1151</div></div>
+                <div class="work-card-body"><h3>妻子逛杭州大厦摔成九级残疾</h3><p>民生维权类短视频，关注消费者安全权益。</p><a href="https://v.douyin.com/mA9EmpYbRiQ/" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="douyin">
-                <div class="work-card-header">
-                    <span class="work-platform platform-douyin">抖音</span>
-                    <div class="work-stats">❤️ 1032 · 转发 2278</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>8旬老人的塑身衣</h3>
-                    <p>关注老年消费者权益，转发量高达2278次。</p>
-                    <a href="https://v.douyin.com/9AXH1AdsoKk/" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-douyin">抖音</span><div class="work-stats">❤️ 1032 · 转发 2278</div></div>
+                <div class="work-card-body"><h3>8旬老人的塑身衣</h3><p>关注老年消费者权益，转发量高达2278次。</p><a href="https://v.douyin.com/9AXH1AdsoKk/" target="_blank" class="work-link">观看视频</a></div>
             </div>
-
             <div class="work-card" data-category="douyin">
-                <div class="work-card-header">
-                    <span class="work-platform platform-douyin">抖音</span>
-                    <div class="work-stats">❤️ 1030 · 💬 604</div>
-                </div>
-                <div class="work-card-body">
-                    <h3>今夜杭州奥体中心的中澳之战</h3>
-                    <p>体育赛事现场报道，记录热血之夜。</p>
-                    <a href="https://v.douyin.com/-fk3fk6X0IY/" target="_blank" class="work-link">观看视频</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-douyin">抖音</span><div class="work-stats">❤️ 1030 · 💬 604</div></div>
+                <div class="work-card-body"><h3>今夜杭州奥体中心的中澳之战</h3><p>体育赛事现场报道，记录热血之夜。</p><a href="https://v.douyin.com/-fk3fk6X0IY/" target="_blank" class="work-link">观看视频</a></div>
             </div>
         </div>
     </div>
@@ -1339,47 +1105,20 @@
         </div>
         <div class="works-grid">
             <div class="work-card">
-                <div class="work-card-header">
-                    <span class="work-platform platform-web">交互网页</span>
-                </div>
-                <div class="work-card-body">
-                    <h3>硕博生在读婚育：社会时钟齿轮里的女性</h3>
-                    <p>交互式数据新闻，深度探讨硕博女性在读期间面临的婚育压力与社会期待。</p>
-                    <a href="https://readymag.com/u1429462089/4242721/4/" target="_blank" class="work-link">查看作品</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-web">交互网页</span></div>
+                <div class="work-card-body"><h3>硕博生在读婚育：社会时钟齿轮里的女性</h3><p>交互式数据新闻，深度探讨硕博女性在读期间面临的婚育压力与社会期待。</p><a href="https://readymag.com/u1429462089/4242721/4/" target="_blank" class="work-link">查看作品</a></div>
             </div>
-
             <div class="work-card">
-                <div class="work-card-header">
-                    <span class="work-platform platform-wechat">微信公众号</span>
-                </div>
-                <div class="work-card-body">
-                    <h3>预制菜：真材实料还是"科技与狠活"</h3>
-                    <p>数据驱动的深度报道，剖析预制菜行业的真实面貌。</p>
-                    <a href="https://mp.weixin.qq.com/s?__biz=Mzg2MjUyNTk4MA==&mid=2247484143&idx=1&sn=238b7f17218325cc8341cc04b15cde9e" target="_blank" class="work-link">阅读文章</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-wechat">微信公众号</span></div>
+                <div class="work-card-body"><h3>预制菜：真材实料还是"科技与狠活"</h3><p>数据驱动的深度报道，剖析预制菜行业的真实面貌。</p><a href="https://mp.weixin.qq.com/s?__biz=Mzg2MjUyNTk4MA==&mid=2247484143&idx=1&sn=238b7f17218325cc8341cc04b15cde9e" target="_blank" class="work-link">阅读文章</a></div>
             </div>
-
             <div class="work-card">
-                <div class="work-card-header">
-                    <span class="work-platform platform-wechat">微信公众号</span>
-                </div>
-                <div class="work-card-body">
-                    <h3>未竟之业：对动物保护，我们还能做什么</h3>
-                    <p>获澎湃新闻转载的深度报道，关注动物保护议题。</p>
-                    <a href="https://mp.weixin.qq.com/s/TxIG3aizY4YF4U-gw00xBQ" target="_blank" class="work-link">阅读文章</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-wechat">微信公众号</span></div>
+                <div class="work-card-body"><h3>未竟之业：对动物保护，我们还能做什么</h3><p>获澎湃新闻转载的深度报道，关注动物保护议题。</p><a href="https://mp.weixin.qq.com/s/TxIG3aizY4YF4U-gw00xBQ" target="_blank" class="work-link">阅读文章</a></div>
             </div>
-
             <div class="work-card">
-                <div class="work-card-header">
-                    <span class="work-platform platform-wechat">微信公众号</span>
-                </div>
-                <div class="work-card-body">
-                    <h3>那群没有恋爱的年轻人</h3>
-                    <p>聚焦当代年轻人的情感状态与社会观察。</p>
-                    <a href="https://mp.weixin.qq.com/s/MfIxZkrhm_1S2kGinU7dQg" target="_blank" class="work-link">阅读文章</a>
-                </div>
+                <div class="work-card-header"><span class="work-platform platform-wechat">微信公众号</span></div>
+                <div class="work-card-body"><h3>那群没有恋爱的年轻人</h3><p>聚焦当代年轻人的情感状态与社会观察。</p><a href="https://mp.weixin.qq.com/s/MfIxZkrhm_1S2kGinU7dQg" target="_blank" class="work-link">阅读文章</a></div>
             </div>
         </div>
     </div>
@@ -1393,30 +1132,12 @@
             <div class="section-divider"></div>
         </div>
         <div class="awards-grid">
-            <div class="award-card">
-                <h4>🏆 第八届中国数据新闻大赛</h4>
-                <p>国家优秀奖</p>
-            </div>
-            <div class="award-card">
-                <h4>🏆 2023数据内容大赛</h4>
-                <p>数据内容类提名案例（业余组）二等奖</p>
-            </div>
-            <div class="award-card">
-                <h4>🏆 第六届全国大学生网络编辑创新大赛</h4>
-                <p>华北赛区二等奖</p>
-            </div>
-            <div class="award-card">
-                <h4>🏆 "正大杯"全国大学生市场调查大赛</h4>
-                <p>省级一等奖</p>
-            </div>
-            <div class="award-card">
-                <h4>🏅 互联网+大赛</h4>
-                <p>北京市赛三等奖</p>
-            </div>
-            <div class="award-card">
-                <h4>🎓 中国传媒大学</h4>
-                <p>校级三好学生 · 校级三等奖学金</p>
-            </div>
+            <div class="award-card"><h4>🏆 第八届中国数据新闻大赛</h4><p>国家优秀奖</p></div>
+            <div class="award-card"><h4>🏆 2023数据内容大赛</h4><p>数据内容类提名案例（业余组）二等奖</p></div>
+            <div class="award-card"><h4>🏆 第六届全国大学生网络编辑创新大赛</h4><p>华北赛区二等奖</p></div>
+            <div class="award-card"><h4>🏆 "正大杯"全国大学生市场调查大赛</h4><p>省级一等奖</p></div>
+            <div class="award-card"><h4>🏅 互联网+大赛</h4><p>北京市赛三等奖</p></div>
+            <div class="award-card"><h4>🎓 中国传媒大学</h4><p>校级三好学生 · 校级三等奖学金</p></div>
         </div>
     </div>
 </section>
@@ -1426,35 +1147,22 @@
     <h2>联系我</h2>
     <div class="section-divider"></div>
     <div class="contact-info">
-        <div class="contact-item">
-            <div class="label">📧 邮箱</div>
-            <div class="value">cuc_huangyuhui@163.com</div>
-        </div>
-        <div class="contact-item">
-            <div class="label">📱 电话</div>
-            <div class="value">18510862177</div>
-        </div>
-        <div class="contact-item">
-            <div class="label">🎓 毕业院校</div>
-            <div class="value">中国传媒大学</div>
-        </div>
+        <div class="contact-item"><div class="label">📧 邮箱</div><div class="value">cuc_huangyuhui@163.com</div></div>
+        <div class="contact-item"><div class="label">📱 电话</div><div class="value">18510862177</div></div>
+        <div class="contact-item"><div class="label">🎓 毕业院校</div><div class="value">中国传媒大学</div></div>
     </div>
 </section>
 
-<!-- ========== Footer ========== -->
 <footer class="footer">
     <p>© 2026 黄钰慧 · All Rights Reserved</p>
 </footer>
 
-<!-- ========== 筛选脚本 ========== -->
 <script>
 function filterWorks(category, clickedTab) {
     const cards = document.querySelectorAll('#tvWorksGrid .work-card');
     const tabs = document.querySelectorAll('.category-tab');
-
     tabs.forEach(tab => tab.classList.remove('active'));
     clickedTab.classList.add('active');
-
     cards.forEach(card => {
         if (category === 'all' || card.dataset.category === category) {
             card.style.display = '';
@@ -1468,20 +1176,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (event) {
         event.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         document.querySelector('.nav-links').classList.remove('active');
     });
 });
 
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
+    navbar.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.3)' : 'none';
 });
 </script>
 
