@@ -49,25 +49,12 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
             color: var(--text-dark);
             line-height: 1.7;
-            background:
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.14), transparent 30%),
-                radial-gradient(circle at 85% 8%, rgba(244, 63, 94, 0.10), transparent 28%),
-                linear-gradient(180deg, #08111e 0%, #0a1628 22%, #edf3fb 48%, #f5f8fc 100%);
-            background-attachment: fixed;
+            background: #f5f8fc;
         }
 
         body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-            background-size: 36px 36px;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.18), transparent 55%);
-            opacity: 0.35;
-            z-index: -2;
+            content: none;
+            display: none;
         }
 
         img {
@@ -1022,13 +1009,6 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                background-attachment: scroll;
-            }
-            body::before {
-                background-size: 28px 28px;
-                opacity: 0.22;
-            }
             .navbar { padding: 0 16px; }
             .navbar-inner { height: 60px; }
             .hero {
@@ -1184,7 +1164,7 @@
             </div>
         </div>
         <div class="hero-avatar-wrapper">
-            <img class="hero-avatar" src="工作照片/个人头像.jpg" alt="黄钰慧">
+            <img class="hero-avatar" src="工作照片/个人头像.JPG" alt="黄钰慧">
         </div>
     </div>
     <div class="hero-scroll-hint">↓ 向下滚动探索更多</div>
@@ -1318,10 +1298,21 @@
             </div>
         </div>
 
+
+        <div class="project-card">
+            <div class="project-hero">
+                <img src="工作照片/WechatIMG40957.jpg" alt="数贸会报道">
+                <div class="project-hero-overlay">
+                    <div class="project-badge">🌐 科技前沿</div>
+                    <h3>2025 钰见数贸会 · 第四届全球数字贸易博览会</h3>
+                    <p>自拍自采自剪，深入报道数字贸易前沿科技与产业动态</p>
+                </div>
+
         <!-- 巴黎奥运会 -->
         <div class="project-card">
-            <div class="project-hero" style="background: linear-gradient(135deg, #002654, #CE1126); height: 300px;">
-                <div class="project-hero-overlay" style="background: linear-gradient(135deg, rgba(0,38,84,0.7), rgba(206,17,38,0.5));">
+            <div class="project-hero">
+                <img src="工作照片/olympic.jpg" alt="巴黎奥运会">
+                <div class="project-hero-overlay">
                     <div class="project-badge">🇫🇷 国际赛事</div>
                     <h3>2024 巴黎奥运会全媒体报道</h3>
                     <p>24小时实时跟进赛事动态，负责新闻长片稿件对接、视频剪辑及短视频制作</p>
